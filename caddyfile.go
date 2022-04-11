@@ -18,25 +18,24 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	// "regexp"
 	"strconv"
 	"strings"
-
-	"github.com/greenpau/caddy-authorize/pkg/kms"
-	"github.com/greenpau/caddy-authorize/pkg/options"
-
-	"github.com/greenpau/caddy-auth-portal/pkg/authn"
-	"github.com/greenpau/caddy-auth-portal/pkg/backends"
-	"github.com/greenpau/caddy-auth-portal/pkg/cookie"
-	"github.com/greenpau/caddy-auth-portal/pkg/registration"
-	"github.com/greenpau/caddy-auth-portal/pkg/transformer"
-	"github.com/greenpau/caddy-auth-portal/pkg/ui"
-	cfgutils "github.com/greenpau/caddy-authorize/pkg/utils/cfg"
 
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig"
 	"github.com/caddyserver/caddy/v2/caddyconfig/httpcaddyfile"
 	"github.com/caddyserver/caddy/v2/modules/caddyhttp"
+	"github.com/greenpau/caddy-auth-portal/pkg/authn"
+	"github.com/greenpau/caddy-auth-portal/pkg/backends"
+	"github.com/greenpau/caddy-auth-portal/pkg/cache"
+	"github.com/greenpau/caddy-auth-portal/pkg/cookie"
+	"github.com/greenpau/caddy-auth-portal/pkg/errors"
+	"github.com/greenpau/caddy-auth-portal/pkg/registration"
+	"github.com/greenpau/caddy-auth-portal/pkg/transformer"
+	"github.com/greenpau/caddy-auth-portal/pkg/ui"
+	"github.com/greenpau/caddy-authorize/pkg/kms"
+	"github.com/greenpau/caddy-authorize/pkg/options"
+	cfgutils "github.com/greenpau/caddy-authorize/pkg/utils/cfg"
 )
 
 const badRepl string = "ERROR_BAD_REPL"
@@ -49,6 +48,9 @@ func init() {
 //
 //     authp {
 //       context <default|name>
+//       // Use the following when you have multiple instances of caddy running like in HA
+//       // mode i.e. k8s, fargate, any other scheduler or any type of load balancing.
+//       cache memcache server1:11211 server2:11211
 //       backends {
 //         local_backend {
 //		     method <local>
@@ -633,6 +635,13 @@ func parseCaddyfileAuthenticator(h httpcaddyfile.Helper) (*authn.Authenticator, 
 				default:
 					return nil, h.Errf("%s directive %q is unsupported", rootDirective, args)
 				}
+			case "cache":
+				cacheInstance, err := parseCacheArgs(h.RemainingArgs())
+				if err != nil {
+					return nil, h.Errf("failed to configure cache %v", err)
+				}
+				portal.CacheConfig = cacheInstance
+
 			default:
 				return nil, h.Errf("unsupported root directive: %s", rootDirective)
 			}
@@ -659,6 +668,26 @@ func parseCaddyfileAuthenticator(h httpcaddyfile.Helper) (*authn.Authenticator, 
 	h.Next()
 
 	return &portal, nil
+}
+
+func parseCacheArgs(args []string) (*cache.Config, error) {
+	// Defaults to local cache
+	if len(args) == 0 {
+		return &cache.Config{Backend: cache.MemoryBackend}, nil
+	}
+	cacheType := args[0]
+	if err := cache.Validate(cache.Backend(cacheType)); err != nil {
+		return nil, fmt.Errorf("%w", err)
+	}
+	cacheArguments := args[1:]
+	if len(cacheArguments) == 0 {
+		if cache.RequiresParameters(cache.Backend(cacheType)) {
+			return nil, errors.ErrCacheBackendRequiresConfig.WithArgs(cacheType)
+		}
+		return &cache.Config{Backend: cache.Backend(cacheType)}, nil
+	}
+
+	return &cache.Config{Backend: cache.Backend(cacheType), Config: cacheArguments}, nil
 }
 
 func getRouteFromParseCaddyfileAuthenticator(h httpcaddyfile.Helper) ([]httpcaddyfile.ConfigValue, error) {
