@@ -17,16 +17,16 @@ package authn
 import (
 	"time"
 
+	"github.com/greenpau/caddy-authorize/pkg/acl"
+	"github.com/greenpau/caddy-authorize/pkg/kms"
+	"github.com/greenpau/caddy-authorize/pkg/options"
+	"github.com/greenpau/caddy-authorize/pkg/validator"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends"
 	"github.com/greenpau/caddy-auth-portal/pkg/cache"
 	"github.com/greenpau/caddy-auth-portal/pkg/cookie"
 	"github.com/greenpau/caddy-auth-portal/pkg/registration"
 	"github.com/greenpau/caddy-auth-portal/pkg/transformer"
 	"github.com/greenpau/caddy-auth-portal/pkg/ui"
-	"github.com/greenpau/caddy-authorize/pkg/acl"
-	"github.com/greenpau/caddy-authorize/pkg/kms"
-	"github.com/greenpau/caddy-authorize/pkg/options"
-	"github.com/greenpau/caddy-authorize/pkg/validator"
 	"github.com/greenpau/go-identity"
 	"go.uber.org/zap"
 )
@@ -65,8 +65,6 @@ type Authenticator struct {
 	CryptoKeyStoreConfig map[string]interface{} `json:"crypto_key_store_config,omitempty"`
 	// TokenGrantorOptions holds the configuration for the tokens issues by Authenticator.
 	TokenGrantorOptions *options.TokenGrantorOptions `json:"token_grantor_options,omitempty"`
-	// CacheConfig holds the configuration to instantiate a cache backend
-	CacheConfig *cache.Config
 
 	registrar    *identity.Database
 	validator    *validator.TokenValidator
@@ -77,7 +75,8 @@ type Authenticator struct {
 	logger       *zap.Logger
 	ui           *ui.Factory
 	startedAt    time.Time
-	cache        cache.Cache
+	sessions     *cache.SessionCache
+	sandboxes    *cache.SandboxCache
 	loginOptions map[string]interface{}
 }
 

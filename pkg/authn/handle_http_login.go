@@ -17,12 +17,6 @@ package authn
 import (
 	"context"
 	"fmt"
-	"net/http"
-	"net/url"
-	"path"
-	"strings"
-	"time"
-
 	"github.com/greenpau/caddy-auth-portal/pkg/backends"
 	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
 	"github.com/greenpau/caddy-auth-portal/pkg/utils"
@@ -30,6 +24,11 @@ import (
 	addrutils "github.com/greenpau/caddy-authorize/pkg/utils/addr"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
+	"net/http"
+	"net/url"
+	"path"
+	"strings"
+	"time"
 )
 
 func (p *Authenticator) handleHTTPLogin(ctx context.Context, w http.ResponseWriter, r *http.Request, rr *requests.Request, usr *user.User) error {
@@ -161,7 +160,7 @@ func (p *Authenticator) handleHTTPLoginRequest(ctx context.Context, w http.Respo
 	// Grant temporary cookie and redirect to sandbox URL for authentication.
 	usr.Authenticator.TempSessionID = utils.GetRandomStringFromRange(36, 48)
 	usr.Authenticator.TempSecret = utils.GetRandomStringFromRange(36, 48)
-	if err := p.cache.Add(usr.Authenticator.TempSessionID, usr); err != nil {
+	if err := p.sandboxes.Add(usr.Authenticator.TempSessionID, usr); err != nil {
 		rr.Response.Code = http.StatusInternalServerError
 		return p.handleHTTPErrorWithLog(ctx, w, r, rr, http.StatusInternalServerError, err.Error())
 	}
@@ -365,7 +364,7 @@ func (p *Authenticator) grantAccess(ctx context.Context, w http.ResponseWriter, 
 
 	rr.Response.Authenticated = true
 	usr.Authorized = true
-	p.cache.Add(rr.Upstream.SessionID, usr)
+	p.sessions.Add(rr.Upstream.SessionID, usr)
 	w.Header().Set("Authorization", "Bearer "+usr.Token)
 	w.Header().Set("Set-Cookie", p.cookie.GetCookie(usr.TokenName, usr.Token))
 

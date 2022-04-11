@@ -16,12 +16,11 @@ package authn
 
 import (
 	"context"
-	"net/http"
-	"net/url"
-
 	"github.com/greenpau/caddy-authorize/pkg/user"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
+	"net/http"
+	"net/url"
 )
 
 func (p *Authenticator) handleHTTPPortal(ctx context.Context, w http.ResponseWriter, r *http.Request, rr *requests.Request, parsedUser *user.User) error {
@@ -30,8 +29,7 @@ func (p *Authenticator) handleHTTPPortal(ctx context.Context, w http.ResponseWri
 	if parsedUser == nil {
 		return p.handleHTTPRedirect(ctx, w, r, rr, "/login")
 	}
-	var usr *user.User
-	err := p.cache.Get(parsedUser.Claims.ID, usr)
+	usr, err := p.sessions.Get(parsedUser.Claims.ID)
 	if err != nil {
 		p.deleteAuthCookies(w)
 		p.logger.Debug(

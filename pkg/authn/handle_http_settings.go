@@ -17,13 +17,12 @@ package authn
 import (
 	"context"
 	"fmt"
-	"net/http"
-	"strings"
-
 	"github.com/greenpau/caddy-authorize/pkg/user"
 	addrutils "github.com/greenpau/caddy-authorize/pkg/utils/addr"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
+	"net/http"
+	"strings"
 )
 
 func (p *Authenticator) handleHTTPSettings(ctx context.Context, w http.ResponseWriter, r *http.Request, rr *requests.Request, parsedUser *user.User) error {
@@ -35,8 +34,8 @@ func (p *Authenticator) handleHTTPSettings(ctx context.Context, w http.ResponseW
 		}
 		return p.handleHTTPRedirect(ctx, w, r, rr, "/login")
 	}
-	var usr *user.User
-	err := p.cache.Get(parsedUser.Claims.ID, usr)
+
+	usr, err := p.sessions.Get(parsedUser.Claims.ID)
 	if err != nil {
 		p.logger.Warn(
 			"jti session not found",

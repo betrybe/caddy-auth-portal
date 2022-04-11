@@ -16,17 +16,18 @@ package authn
 
 import (
 	"context"
+	// "encoding/json"
 	"fmt"
-	"net/http"
-	"strings"
-
 	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
 	"github.com/greenpau/caddy-auth-portal/pkg/utils"
 	"github.com/greenpau/caddy-authorize/pkg/user"
 	"github.com/greenpau/go-identity"
 	"github.com/greenpau/go-identity/pkg/qr"
 	"github.com/greenpau/go-identity/pkg/requests"
+	"net/http"
+	// "time"
 	"go.uber.org/zap"
+	"strings"
 )
 
 func (p *Authenticator) handleHTTPSandbox(ctx context.Context, w http.ResponseWriter, r *http.Request, rr *requests.Request) error {
@@ -73,8 +74,7 @@ func (p *Authenticator) handleHTTPSandbox(ctx context.Context, w http.ResponseWr
 		return p.handleHTTPError(ctx, w, r, rr, http.StatusUnauthorized)
 	}
 
-	var usr *user.User
-	err = p.cache.Get(sandboxID, usr)
+	usr, err := p.sandboxes.Get(sandboxID)
 	if err != nil {
 		p.logger.Debug(
 			"failed to extract cached entry from sandbox",
@@ -114,7 +114,7 @@ func (p *Authenticator) handleHTTPSandbox(ctx context.Context, w http.ResponseWr
 		sandboxPartition = strings.TrimPrefix(sandboxPartition, "mfa-app-barcode/")
 		return p.handleHTTPMfaBarcode(ctx, w, r, sandboxPartition)
 	case sandboxPartition == "terminate":
-		p.cache.Del(sandboxID)
+		p.sandboxes.Delete(sandboxID)
 		return p.handleHTTPRedirectSeeOther(ctx, w, r, rr, "login")
 	}
 
@@ -151,7 +151,7 @@ func (p *Authenticator) handleHTTPSandbox(ctx context.Context, w http.ResponseWr
 	if _, exists := data["view"]; exists {
 		switch data["view"] {
 		case "terminate":
-			p.cache.Del(sandboxID)
+			p.sandboxes.Delete(sandboxID)
 		case "redirect":
 			return p.handleHTTPRedirectSeeOther(ctx, w, r, rr, "sandbox/"+sandboxID)
 		}

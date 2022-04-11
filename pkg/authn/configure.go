@@ -16,9 +16,6 @@ package authn
 
 import (
 	"context"
-	"path"
-	"strings"
-
 	"github.com/greenpau/caddy-auth-portal/pkg/backends"
 	"github.com/greenpau/caddy-auth-portal/pkg/cache"
 	"github.com/greenpau/caddy-auth-portal/pkg/cookie"
@@ -32,6 +29,8 @@ import (
 	"github.com/greenpau/caddy-authorize/pkg/validator"
 	"github.com/greenpau/go-identity"
 	"go.uber.org/zap"
+	"path"
+	"strings"
 )
 
 func (mgr *InstanceManager) configure(p, m *Authenticator) error {
@@ -59,17 +58,18 @@ func (mgr *InstanceManager) configure(p, m *Authenticator) error {
 func (mgr *InstanceManager) configureEssentials(primaryInstance, m *Authenticator) error {
 	// Configure session cache.
 	if m.PrimaryInstance {
-		if m.CacheConfig == nil {
-			m.cache = cache.NewMemoryCache()
-		} else {
-			m.cache = cache.NewFromArgs(m.CacheConfig)
-		}
-		err := m.cache.Init()
-		if err != nil {
-			return err
-		}
+		m.sessions = cache.NewSessionCache()
+		m.sessions.Run()
 	} else {
-		m.cache = primaryInstance.cache
+		m.sessions = primaryInstance.sessions
+	}
+
+	// Configure sandbox cache.
+	if m.PrimaryInstance {
+		m.sandboxes = cache.NewSandboxCache()
+		m.sandboxes.Run()
+	} else {
+		m.sandboxes = primaryInstance.sandboxes
 	}
 
 	// Cookies Validation
@@ -121,7 +121,7 @@ func (mgr *InstanceManager) configureBackends(primaryInstance, m *Authenticator)
 	m.loginOptions["password_recovery_required"] = "no"
 
 	for _, cfg := range m.BackendConfigs {
-		backend, err := backends.NewBackend(&cfg, m.logger, m.cache)
+		backend, err := backends.NewBackend(&cfg, m.logger)
 		if err != nil {
 			return errors.ErrBackendConfigurationFailed.WithArgs(m.Context, m.Name, err)
 		}
