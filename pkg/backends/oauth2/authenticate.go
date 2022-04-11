@@ -17,6 +17,7 @@ package oauth2
 import (
 	//"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -76,8 +77,14 @@ func (b *Backend) Authenticate(r *requests.Request) error {
 		}
 		if codeExists && stateExists {
 			// Received Authorization Code
-			if b.state.exists(reqParamsState) {
-				b.state.addCode(reqParamsState, reqParamsCode)
+			exists, err := b.cache.Exists(getStateCacheKey(reqParamsState))
+			if err != nil {
+				return fmt.Errorf("failed to check if state exists %w", err)
+			}
+			if exists {
+				if err = b.cache.Add(getCodeCacheKey(reqParamsState), reqParamsCode); err != nil {
+					return fmt.Errorf("failed to add code to state %w", err)
+				}
 			} else {
 				return errors.ErrBackendOauthAuthorizationStateNotFound
 			}
@@ -91,7 +98,6 @@ func (b *Backend) Authenticate(r *requests.Request) error {
 
 			reqRedirectURI := reqPath + "/authorization-code-callback"
 			var accessToken map[string]interface{}
-			var err error
 			switch b.Config.Provider {
 			case "facebook":
 				accessToken, err = b.fetchFacebookAccessToken(reqRedirectURI, reqParamsState, reqParamsCode)
@@ -176,7 +182,10 @@ func (b *Backend) Authenticate(r *requests.Request) error {
 
 	r.Response.RedirectURL = b.authorizationURL + "?" + params.Encode()
 
-	b.state.add(state, nonce)
+	err := b.cache.Add(getStateCacheKey(state), nonce)
+	if err != nil {
+		return fmt.Errorf("failed to add state %w", err)
+	}
 	b.logger.Debug(
 		"redirecting to OAuth 2.0 endpoint",
 		zap.String("request_id", r.ID),
