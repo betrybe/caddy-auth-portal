@@ -291,13 +291,13 @@ func TestParseCacheArgs(t *testing.T) {
 		expectedType  interface{}
 		expectedError error
 	}{
-		{"empty-is-memory", []string{}, &cache.Memory{}, nil},
-		{"explicit-memory-is-memory", []string{"memory"}, &cache.Memory{}, nil},
+		{"empty-is-memory", []string{}, &cache.Config{Backend: "memory", Config: []string(nil)}, nil},
+		{"explicit-memory-is-memory", []string{"memory"}, &cache.Config{Backend: "memory", Config: []string(nil)}, nil},
 		{"memcached-requires-config", []string{"memcached"}, nil, errors.ErrCacheBackendRequiresConfig.WithArgs("memcached")},
 		{
 			"memcached",
 			[]string{"memcached", "server1:11211", "server2:11211"},
-			cache.NewMemcachedCache("server1:11211", "server2:11211"),
+			&cache.Config{Backend: "memcached", Config: []string{"server1:11211", "server2:11211"}},
 			nil,
 		},
 		{"invalid-backend", []string{"invalid"}, nil, errors.ErrCacheBackendNotFound.WithArgs("invalid")},
