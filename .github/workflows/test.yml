@@ -23,10 +23,11 @@ jobs:
       with:
         name: profile.cov
         path: profile.cov
-  finish:
+  coverage:
     needs: test
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v3
     - uses: actions/download-artifact@v2
       with:
         name: profile.cov
