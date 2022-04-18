@@ -18,7 +18,6 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
     - name: Run tests
-      shell: bash
       run: go test -v -coverprofile=./profile.cov ./...
     - name: Send coverage
       continue-on-error: true
