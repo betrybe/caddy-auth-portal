@@ -17,14 +17,13 @@ package authn
 import (
 	"context"
 	"fmt"
+	"net/http"
+
 	"github.com/greenpau/caddy-auth-portal/pkg/backends"
 	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
 	"github.com/greenpau/caddy-authorize/pkg/user"
-	// "github.com/greenpau/caddy-auth-portal/pkg/utils"
 	"github.com/greenpau/go-identity"
 	"github.com/greenpau/go-identity/pkg/requests"
-	// "go.uber.org/zap"
-	"net/http"
 )
 
 func (p *Authenticator) handleHTTPGeneralSettings(

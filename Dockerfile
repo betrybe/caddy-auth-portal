@@ -1,9 +1,8 @@
 FROM caddy:builder AS builder
 
 RUN xcaddy build \
-    --with github.com/greenpau/caddy-authorize \
-    --with github.com/greenpau/caddy-auth-portal \
-    --with github.com/caddy-dns/cloudflare
+    --with github.com/betrybe/caddy-authorize \
+    --with github.com/betrybe/caddy-auth-portal=./
 
 FROM caddy:latest
 

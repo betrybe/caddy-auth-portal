@@ -1,0 +1,34 @@
+---
+name: Run tests & coverage
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  core:
+    strategy:
+      matrix:
+        go-version: [1.16]
+        platform: [ubuntu-latest]
+    name: Build
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go-version }}
+      id: go
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+    - name: Run tests
+      shell: bash
+      run: go test -v -coverprofile=./profile.cov ./...
+    - name: Send coverage
+      continue-on-error: true
+      uses: shogo82148/actions-goveralls@v1
+      with:
+        path-to-profile: profile.cov
