@@ -9,16 +9,27 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  core:
+  test:
     name: Tests & Coverage
     runs-on: ubuntu-latest
     container:
       image: caddy:builder
     steps:
     - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Run tests
       run: CGO_ENABLED=0 go test -v -coverprofile=./profile.cov ./...
+    - uses: actions/upload-artifact@v2
+      with:
+        name: profile.cov
+        path: profile.cov
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: profile.cov
     - name: Send coverage
       continue-on-error: true
       uses: shogo82148/actions-goveralls@v1
