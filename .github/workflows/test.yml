@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    name: Tests & Coverage
+    name: Run Tests
     runs-on: ubuntu-latest
     container:
       image: caddy:builder
@@ -24,6 +24,7 @@ jobs:
         name: profile.cov
         path: profile.cov
   coverage:
+    name: Send Coverage
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +33,6 @@ jobs:
       with:
         name: profile.cov
     - name: Send coverage
-      continue-on-error: true
       uses: shogo82148/actions-goveralls@v1
       with:
         path-to-profile: profile.cov
