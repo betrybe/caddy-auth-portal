@@ -15,7 +15,7 @@ require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/golang-jwt/jwt/v4 v4.1.0
 	github.com/google/go-cmp v0.5.6
-	github.com/greenpau/caddy-auth-portal v1.4.39
+	github.com/greenpau/caddy-auth-portal v0.0.0
 	github.com/greenpau/caddy-authorize v1.3.24
 	github.com/greenpau/caddy-trace v1.1.8
 	github.com/greenpau/go-identity v1.1.6

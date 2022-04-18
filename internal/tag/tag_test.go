@@ -15,7 +15,7 @@
 package tag
 
 import (
-	"github.com/greenpau/caddy-auth-portal/internal/tests"
+	"github.com/betrybe/caddy-auth-portal/internal/tests"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/local"
 	"testing"
 )

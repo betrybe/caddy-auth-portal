@@ -15,8 +15,9 @@
 package utils
 
 import (
-	"github.com/greenpau/caddy-auth-portal/internal/tests"
 	"testing"
+
+	"github.com/betrybe/caddy-auth-portal/internal/tests"
 )
 
 func TestStripQueryParam(t *testing.T) {

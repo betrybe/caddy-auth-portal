@@ -19,7 +19,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/greenpau/caddy-auth-portal/internal/tests"
+	"github.com/betrybe/caddy-auth-portal/internal/tests"
 )
 
 func TestFactory(t *testing.T) {

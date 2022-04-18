@@ -16,19 +16,19 @@ package backends
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
+	"github.com/betrybe/caddy-auth-portal/internal/tests"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/ldap"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/local"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/oauth2"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/saml"
 	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
 	"github.com/greenpau/caddy-auth-portal/pkg/errors"
-	"github.com/greenpau/go-identity/pkg/requests"
-	"strings"
-
-	"github.com/greenpau/caddy-auth-portal/internal/tests"
 	logutils "github.com/greenpau/caddy-authorize/pkg/utils/log"
+	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
-	"testing"
 )
 
 func TestBackendConfig(t *testing.T) {
