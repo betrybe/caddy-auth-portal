@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
     - name: Install prerequisites
-      run: sudo apt-get --assume-yes install libnss3-tools
+      run: go get -u github.com/caddyserver/xcaddy/cmd/xcaddy
     - name: Install Go
       uses: actions/setup-go@v2
       with:
