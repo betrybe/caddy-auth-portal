@@ -16,9 +16,9 @@ jobs:
         platform: [ubuntu-latest]
     name: Build
     runs-on: ${{ matrix.platform }}
+    container:
+      image: caddy:builder
     steps:
-    - name: Install prerequisites
-      run: go get -u github.com/caddyserver/xcaddy/cmd/xcaddy
     - name: Install Go
       uses: actions/setup-go@v2
       with:
