@@ -17,6 +17,8 @@ jobs:
     name: Build
     runs-on: ${{ matrix.platform }}
     steps:
+    - name: Install prerequisites
+      run: sudo apt-get --assume-yes install libnss3-tools
     - name: Install Go
       uses: actions/setup-go@v2
       with:
