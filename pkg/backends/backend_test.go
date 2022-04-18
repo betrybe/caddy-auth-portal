@@ -16,19 +16,19 @@ package backends
 
 import (
 	"fmt"
+	"strings"
+	"testing"
+
+	"github.com/betrybe/caddy-auth-portal/internal/tests"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/ldap"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/local"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/oauth2"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/saml"
 	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
 	"github.com/greenpau/caddy-auth-portal/pkg/errors"
-	"github.com/greenpau/go-identity/pkg/requests"
-	"strings"
-
-	"github.com/greenpau/caddy-auth-portal/internal/tests"
 	logutils "github.com/greenpau/caddy-authorize/pkg/utils/log"
+	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
-	"testing"
 )
 
 func TestBackendConfig(t *testing.T) {
@@ -393,7 +393,7 @@ func TestBackendConfig(t *testing.T) {
 				tc.config = cfg
 			}
 
-			b, err := NewBackend(tc.config, logger)
+			b, err := NewBackend(tc.config, logger, nil)
 			if tests.EvalErrWithLog(t, err, tc.config, tc.shouldErr, tc.err, msgs) {
 				return
 			}
@@ -524,7 +524,7 @@ func TestBackend(t *testing.T) {
 			msgs := []string{fmt.Sprintf("test name: %s", tc.name)}
 			msgs = append(msgs, fmt.Sprintf("config:\n%v", tc.config))
 			logger := logutils.NewLogger()
-			b, err := NewBackend(tc.config, logger)
+			b, err := NewBackend(tc.config, logger, nil)
 			if err != nil {
 				t.Fatalf("initialization error: %v", err)
 			}

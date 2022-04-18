@@ -16,6 +16,7 @@ package authn
 
 import (
 	"fmt"
+
 	"github.com/greenpau/caddy-auth-portal/pkg/errors"
 	"github.com/greenpau/caddy-authorize/pkg/shared/idp"
 	"go.uber.org/zap"

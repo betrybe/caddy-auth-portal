@@ -12,34 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package tag
+package cache
 
 import (
-	"github.com/betrybe/caddy-auth-portal/internal/tests"
-	"github.com/greenpau/caddy-auth-portal/pkg/backends/local"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-func TestTagCompliance(t *testing.T) {
-	testcases := []struct {
-		name      string
-		entry     interface{}
-		opts      *Options
-		shouldErr bool
-		err       error
-	}{
-		{
-			name:  "test local backend",
-			entry: &local.Backend{},
-		},
-	}
+func TestMemoryFlow(t *testing.T) {
+	cache := NewMemoryCache()
+	exists, err := cache.Exists("foo")
+	assert.False(t, exists)
+	assert.Nil(t, err, err)
 
-	for _, tc := range testcases {
-		t.Run(tc.name, func(t *testing.T) {
-			msgs, err := GetTagCompliance(tc.entry, tc.opts)
-			if tests.EvalErrWithLog(t, err, nil, tc.shouldErr, tc.err, msgs) {
-				return
-			}
-		})
-	}
+	err = cache.Add("foo", "bar")
+	assert.Nil(t, err, err)
+
+	var rv string
+	err = cache.Get("foo", &rv)
+	assert.Nil(t, err, err)
+	assert.Equal(t, rv, "bar")
+
+	err = cache.Del("foo")
+	assert.Nil(t, err, err)
+
+	err = cache.Del("foo")
+	assert.Nil(t, err, err)
 }

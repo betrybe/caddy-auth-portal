@@ -17,8 +17,9 @@ package transformer
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/greenpau/caddy-auth-portal/internal/tests"
 	"testing"
+
+	"github.com/betrybe/caddy-auth-portal/internal/tests"
 )
 
 func TestFactory(t *testing.T) {

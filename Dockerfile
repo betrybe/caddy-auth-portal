@@ -1,11 +1,8 @@
 FROM caddy:builder AS builder
-LABEL maintainer="greenpau"
-LABEL org.opencontainers.image.source https://github.com/greenpau/caddy-auth-portal
 
 RUN xcaddy build \
-    --with github.com/greenpau/caddy-authorize \
-    --with github.com/greenpau/caddy-auth-portal \
-    --with github.com/caddy-dns/cloudflare
+    --with github.com/betrybe/caddy-authorize \
+    --with github.com/betrybe/caddy-auth-portal=./
 
 FROM caddy:latest
 

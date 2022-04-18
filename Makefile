@@ -113,7 +113,7 @@ license:
 
 mod:
 	@echo "Verifying modules"
-	@if egrep -q "^replace " go.mod; then ( echo "replace directive found in go.mod" && false ) fi
+	#@if egrep -q "^replace " go.mod; then ( echo "replace directive found in go.mod" && false ) fi
 	@go mod tidy
 	@go mod verify
 

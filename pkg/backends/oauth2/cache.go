@@ -12,34 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package tag
+package oauth2
 
 import (
-	"github.com/betrybe/caddy-auth-portal/internal/tests"
-	"github.com/greenpau/caddy-auth-portal/pkg/backends/local"
-	"testing"
+	"fmt"
 )
 
-func TestTagCompliance(t *testing.T) {
-	testcases := []struct {
-		name      string
-		entry     interface{}
-		opts      *Options
-		shouldErr bool
-		err       error
-	}{
-		{
-			name:  "test local backend",
-			entry: &local.Backend{},
-		},
-	}
+func getStateCacheKey(state string) string {
+	return fmt.Sprintf("caddy-auth-portal-state-%s", state)
+}
 
-	for _, tc := range testcases {
-		t.Run(tc.name, func(t *testing.T) {
-			msgs, err := GetTagCompliance(tc.entry, tc.opts)
-			if tests.EvalErrWithLog(t, err, nil, tc.shouldErr, tc.err, msgs) {
-				return
-			}
-		})
-	}
+func getCodeCacheKey(state string) string {
+	return fmt.Sprintf("caddy-auth-portal-code-%s", state)
 }

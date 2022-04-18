@@ -16,7 +16,7 @@ package authn
 
 import (
 	"fmt"
-	"github.com/greenpau/caddy-auth-portal/internal/tests"
+	"github.com/betrybe/caddy-auth-portal/internal/tests"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends"
 	"github.com/greenpau/caddy-auth-portal/pkg/backends/local"
 	"github.com/greenpau/caddy-auth-portal/pkg/errors"
