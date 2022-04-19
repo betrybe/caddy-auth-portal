@@ -15,9 +15,10 @@
 package tag
 
 import (
-	"github.com/betrybe/caddy-auth-portal/internal/tests"
-	"github.com/greenpau/caddy-auth-portal/pkg/backends/local"
 	"testing"
+
+	"github.com/betrybe/caddy-auth-portal/internal/tests"
+	"github.com/betrybe/caddy-auth-portal/pkg/backends/local"
 )
 
 func TestTagCompliance(t *testing.T) {

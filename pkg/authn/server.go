@@ -16,9 +16,10 @@ package authn
 
 import (
 	"context"
-	"github.com/greenpau/caddy-auth-portal/pkg/utils"
-	"github.com/greenpau/go-identity/pkg/requests"
 	"net/http"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/utils"
+	"github.com/greenpau/go-identity/pkg/requests"
 )
 
 // ServeHTTP is a gateway for the authentication portal.

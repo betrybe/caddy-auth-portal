@@ -16,13 +16,14 @@ package authn
 
 import (
 	"context"
-	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
-	"github.com/greenpau/caddy-authorize/pkg/errors"
-	"github.com/greenpau/caddy-authorize/pkg/shared/idp"
-	"github.com/greenpau/caddy-authorize/pkg/user"
+	"time"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/enums/operator"
+	"github.com/betrybe/caddy-authorize/pkg/errors"
+	"github.com/betrybe/caddy-authorize/pkg/shared/idp"
+	"github.com/betrybe/caddy-authorize/pkg/user"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
-	"time"
 )
 
 // APIKeyAuth performs API key authentication.

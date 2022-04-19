@@ -17,13 +17,13 @@ package portal
 import (
 	"net/http"
 
+	"github.com/betrybe/caddy-auth-portal/pkg/authn"
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
 	"github.com/caddyserver/caddy/v2/caddyconfig/httpcaddyfile"
 	"github.com/caddyserver/caddy/v2/modules/caddyhttp"
-	"github.com/greenpau/caddy-auth-portal/pkg/authn"
 	"github.com/greenpau/go-identity/pkg/requests"
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
 func init() {

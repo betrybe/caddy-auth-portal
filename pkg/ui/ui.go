@@ -17,11 +17,12 @@ package ui
 import (
 	"bytes"
 	"fmt"
-	cfgutils "github.com/greenpau/caddy-authorize/pkg/utils/cfg"
 	"io/ioutil"
 	"path"
 	"strings"
 	"text/template"
+
+	cfgutils "github.com/betrybe/caddy-authorize/pkg/utils/cfg"
 )
 
 // Themes stores UI themes.

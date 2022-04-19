@@ -18,10 +18,6 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"fmt"
-	ldap "github.com/go-ldap/ldap/v3"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
-	"github.com/greenpau/go-identity/pkg/requests"
-	"go.uber.org/zap"
 	"io/ioutil"
 	"net"
 	"net/url"
@@ -29,6 +25,11 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
+	ldap "github.com/go-ldap/ldap/v3"
+	"github.com/greenpau/go-identity/pkg/requests"
+	"go.uber.org/zap"
 )
 
 // Authenticator represents database connector.

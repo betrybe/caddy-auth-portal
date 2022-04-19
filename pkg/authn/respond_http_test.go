@@ -16,14 +16,15 @@ package authn
 
 import (
 	"context"
-	"github.com/betrybe/caddy-auth-portal/internal/tests"
-	"github.com/greenpau/caddy-auth-portal/pkg/cookie"
-	"github.com/greenpau/go-identity/pkg/requests"
-	"go.uber.org/zap"
 	"net/http"
 	"net/url"
 	"strings"
 	"testing"
+
+	"github.com/betrybe/caddy-auth-portal/internal/tests"
+	"github.com/betrybe/caddy-auth-portal/pkg/cookie"
+	"github.com/greenpau/go-identity/pkg/requests"
+	"go.uber.org/zap"
 )
 
 type mockResponseWriter struct{}

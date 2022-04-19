@@ -27,8 +27,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
-	"github.com/greenpau/caddy-auth-portal/pkg/utils"
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
+	"github.com/betrybe/caddy-auth-portal/pkg/utils"
 	"github.com/greenpau/go-identity/pkg/requests"
 	uuid "github.com/satori/go.uuid"
 	"go.uber.org/zap"

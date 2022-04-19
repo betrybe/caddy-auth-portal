@@ -19,7 +19,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/greenpau/caddy-authorize/pkg/user"
+	"github.com/betrybe/caddy-authorize/pkg/user"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
 )

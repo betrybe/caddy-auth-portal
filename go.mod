@@ -2,12 +2,10 @@ module github.com/betrybe/caddy-auth-portal
 
 go 1.16
 
-replace (
-	github.com/greenpau/caddy-auth-portal => ./
-	github.com/greenpau/caddy-authorize => github.com/betrybe/caddy-authorize v1.3.25-0.20220418141308-6db42076b84a
-)
+replace github.com/greenpau/caddy-auth-portal => ./
 
 require (
+	github.com/betrybe/caddy-authorize v1.3.25
 	github.com/bradfitz/gomemcache v0.0.0-20190913173617-a41fca850d0b
 	github.com/caddyserver/caddy/v2 v2.4.6
 	github.com/crewjam/saml v0.4.5
@@ -15,8 +13,6 @@ require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/golang-jwt/jwt/v4 v4.1.0
 	github.com/google/go-cmp v0.5.6
-	github.com/greenpau/caddy-auth-portal v0.0.0
-	github.com/greenpau/caddy-authorize v1.3.24
 	github.com/greenpau/caddy-trace v1.1.8
 	github.com/greenpau/go-identity v1.1.6
 	github.com/iancoleman/strcase v0.2.0

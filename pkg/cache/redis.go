@@ -17,8 +17,9 @@ package cache
 import (
 	"context"
 	"encoding/json"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
 	"github.com/go-redis/redis/v8"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
 )
 
 // Redis implements StateManager interface using redis as backend.

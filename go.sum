@@ -167,10 +167,8 @@ github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24
 github.com/beorn7/perks v1.0.0/go.mod h1:KWe93zE9D1o94FZ5RNwFwVgaQK1VOXiVxmqh+CedLV8=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
-github.com/betrybe/caddy-auth-portal v1.4.40-0.20220411223200-c29f6d0b4314 h1:Om2bHJXYvnhDZpqd+OuhXBi8v3/D5J7aP+4gqx2MZj4=
-github.com/betrybe/caddy-auth-portal v1.4.40-0.20220411223200-c29f6d0b4314/go.mod h1:o+0khAkwxStfCdTOIXFiDElD0qT+GMrLzA83/f1tek4=
-github.com/betrybe/caddy-authorize v1.3.25-0.20220418141308-6db42076b84a h1:YFc5nG5+wSIKG5lHqNQC0aoKb/bcl68DPc17hVHM89Y=
-github.com/betrybe/caddy-authorize v1.3.25-0.20220418141308-6db42076b84a/go.mod h1:sNcBNNr7EOyB/D2fHwskJUJU6e4JjEgjOztCz5aMKjk=
+github.com/betrybe/caddy-authorize v1.3.25 h1:gx3wMeyBJtZea1QtcIzapDpi2c6CU+WTFRZI/4j/Ya8=
+github.com/betrybe/caddy-authorize v1.3.25/go.mod h1:g5Pz0hhNO+oDqDEoxCx7QRctJMb0J52GlsTDc8gCzJ4=
 github.com/bgentry/speakeasy v0.1.0/go.mod h1:+zsyZBPWlz7T6j88CTgSN5bM796AkVf0kBD4zp0CCIs=
 github.com/bketelsen/crypt v0.0.3-0.20200106085610-5cbc8cc4026c/go.mod h1:MKsuJmJgSg28kpZDP6UIiPt0e0Oz0kqKNGyRaWEPv84=
 github.com/blakesmith/ar v0.0.0-20190502131153-809d4375e1fb/go.mod h1:PkYb9DJNAwrSvRx5DYA+gUcOIgTGVMNkfSCbZM8cWpI=

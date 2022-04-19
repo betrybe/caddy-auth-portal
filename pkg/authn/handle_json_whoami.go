@@ -17,9 +17,10 @@ package authn
 import (
 	"context"
 	"encoding/json"
-	"github.com/greenpau/caddy-authorize/pkg/user"
-	"github.com/greenpau/go-identity/pkg/requests"
 	"net/http"
+
+	"github.com/betrybe/caddy-authorize/pkg/user"
+	"github.com/greenpau/go-identity/pkg/requests"
 )
 
 func (p *Authenticator) handleJSONWhoami(ctx context.Context, w http.ResponseWriter, r *http.Request, rr *requests.Request, usr *user.User) error {

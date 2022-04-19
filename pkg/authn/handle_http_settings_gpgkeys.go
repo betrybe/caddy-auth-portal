@@ -21,9 +21,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/greenpau/caddy-auth-portal/pkg/backends"
-	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
-	"github.com/greenpau/caddy-authorize/pkg/user"
+	"github.com/betrybe/caddy-auth-portal/pkg/backends"
+	"github.com/betrybe/caddy-auth-portal/pkg/enums/operator"
+	"github.com/betrybe/caddy-authorize/pkg/user"
 	"github.com/greenpau/go-identity"
 	"github.com/greenpau/go-identity/pkg/requests"
 )

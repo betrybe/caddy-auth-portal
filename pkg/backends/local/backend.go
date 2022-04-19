@@ -15,11 +15,12 @@
 package local
 
 import (
-	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
+	"strings"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/enums/operator"
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
-	"strings"
 )
 
 // Config holds the configuration for the backend.

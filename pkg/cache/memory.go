@@ -20,7 +20,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
 )
 
 // Memory is a state store that stores state in memory on the current process.

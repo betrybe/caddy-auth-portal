@@ -18,14 +18,15 @@ import (
 	"context"
 	"encoding/xml"
 	"fmt"
-	samllib "github.com/crewjam/saml"
-	"github.com/crewjam/saml/samlsp"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
-	fileutils "github.com/greenpau/caddy-authorize/pkg/utils/file"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
+	fileutils "github.com/betrybe/caddy-authorize/pkg/utils/file"
+	samllib "github.com/crewjam/saml"
+	"github.com/crewjam/saml/samlsp"
 
 	"go.uber.org/zap"
 )

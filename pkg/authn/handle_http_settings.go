@@ -20,8 +20,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/greenpau/caddy-authorize/pkg/user"
-	addrutils "github.com/greenpau/caddy-authorize/pkg/utils/addr"
+	"github.com/betrybe/caddy-authorize/pkg/user"
+	addrutils "github.com/betrybe/caddy-authorize/pkg/utils/addr"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
 )

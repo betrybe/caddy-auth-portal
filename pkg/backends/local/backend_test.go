@@ -22,9 +22,9 @@ import (
 	"testing"
 
 	"github.com/betrybe/caddy-auth-portal/internal/tests"
-	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
-	logutils "github.com/greenpau/caddy-authorize/pkg/utils/log"
+	"github.com/betrybe/caddy-auth-portal/pkg/enums/operator"
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
+	logutils "github.com/betrybe/caddy-authorize/pkg/utils/log"
 	"github.com/greenpau/go-identity/pkg/requests"
 )
 
