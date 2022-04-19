@@ -88,7 +88,7 @@ func NewFromArgs(config *Config) Cache {
 	case MemcachedBackend:
 		return NewMemcachedCache(config.Config...)
 	case RedisBackend:
-		return NewRedisCache(config.Config...)
+		return NewRedisCache(config.Config)
 	default:
 		panic(fmt.Sprintf("invalid cache provided %s", config.Backend))
 	}

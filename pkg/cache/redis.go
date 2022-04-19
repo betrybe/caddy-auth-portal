@@ -25,15 +25,16 @@ import (
 // Redis implements StateManager interface using redis as backend.
 type Redis struct {
 	Servers []string
-	client  *redis.ClusterClient
+	client  *redis.Client
 	ctx     context.Context
 }
 
 // NewRedisCache creates a new key manager using the specified servers.
-func NewRedisCache(server ...string) *Redis {
+func NewRedisCache(server []string) *Redis {
 	return &Redis{
 		Servers: server,
-		client:  redis.NewClusterClient(&redis.ClusterOptions{Addrs: server}),
+		client:  redis.NewClient(&redis.Options{Addr: server[0]}),
+		ctx:     context.Background(),
 	}
 }
 
