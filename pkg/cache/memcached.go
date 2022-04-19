@@ -17,8 +17,9 @@ package cache
 import (
 	"encoding/json"
 	stdErrors "errors"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
 	"github.com/bradfitz/gomemcache/memcache"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
 )
 
 // Memcached implements StateManager interface using memcached as backend.

@@ -16,10 +16,11 @@ package validators
 
 import (
 	"fmt"
-	charsetutils "github.com/greenpau/caddy-authorize/pkg/utils/charset"
 	"net"
 	"regexp"
 	"strings"
+
+	charsetutils "github.com/betrybe/caddy-authorize/pkg/utils/charset"
 )
 
 const usernameCharset = "0123456789abcdefghijklmnopqrstuvwxyz"

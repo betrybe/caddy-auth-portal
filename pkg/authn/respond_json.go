@@ -17,12 +17,13 @@ package authn
 import (
 	"context"
 	"encoding/json"
-	addrutils "github.com/greenpau/caddy-authorize/pkg/utils/addr"
-	"github.com/greenpau/go-identity/pkg/requests"
-	"go.uber.org/zap"
 	"net/http"
 	"strings"
 	"time"
+
+	addrutils "github.com/betrybe/caddy-authorize/pkg/utils/addr"
+	"github.com/greenpau/go-identity/pkg/requests"
+	"go.uber.org/zap"
 )
 
 // AccessDeniedResponse is the access denied response.

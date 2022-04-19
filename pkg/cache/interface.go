@@ -16,7 +16,8 @@ package cache
 
 import (
 	"fmt"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
 )
 
 // Backend cache

@@ -16,12 +16,13 @@ package authn
 
 import (
 	"fmt"
+
 	"github.com/betrybe/caddy-auth-portal/internal/tests"
-	"github.com/greenpau/caddy-auth-portal/pkg/backends"
-	"github.com/greenpau/caddy-auth-portal/pkg/backends/local"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
-	"github.com/greenpau/caddy-authorize/pkg/acl"
-	logutils "github.com/greenpau/caddy-authorize/pkg/utils/log"
+	"github.com/betrybe/caddy-auth-portal/pkg/backends"
+	"github.com/betrybe/caddy-auth-portal/pkg/backends/local"
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
+	"github.com/betrybe/caddy-authorize/pkg/acl"
+	logutils "github.com/betrybe/caddy-authorize/pkg/utils/log"
 
 	"testing"
 )

@@ -19,7 +19,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/greenpau/caddy-authorize/pkg/user"
+	"github.com/betrybe/caddy-authorize/pkg/user"
 	"github.com/greenpau/go-identity/pkg/requests"
 )
 

@@ -19,9 +19,9 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/greenpau/caddy-auth-portal/pkg/cache"
-	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
+	"github.com/betrybe/caddy-auth-portal/pkg/cache"
+	"github.com/betrybe/caddy-auth-portal/pkg/enums/operator"
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
 )

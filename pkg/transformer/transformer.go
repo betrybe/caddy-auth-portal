@@ -17,9 +17,10 @@ package transformer
 import (
 	"context"
 	"fmt"
-	"github.com/greenpau/caddy-authorize/pkg/acl"
-	cfgutils "github.com/greenpau/caddy-authorize/pkg/utils/cfg"
 	"strings"
+
+	"github.com/betrybe/caddy-authorize/pkg/acl"
+	cfgutils "github.com/betrybe/caddy-authorize/pkg/utils/cfg"
 )
 
 // Config represents a common set of configuration settings

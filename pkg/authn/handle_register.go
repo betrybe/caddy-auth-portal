@@ -16,11 +16,12 @@ package authn
 
 import (
 	"context"
-	"github.com/greenpau/caddy-auth-portal/pkg/validators"
-	"github.com/greenpau/go-identity/pkg/requests"
-	"go.uber.org/zap"
 	"net/http"
 	"path"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/validators"
+	"github.com/greenpau/go-identity/pkg/requests"
+	"go.uber.org/zap"
 )
 
 func (p *Authenticator) handleHTTPRegister(ctx context.Context, w http.ResponseWriter, r *http.Request, rr *requests.Request) error {

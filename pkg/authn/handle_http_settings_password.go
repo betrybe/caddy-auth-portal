@@ -17,10 +17,12 @@ package authn
 import (
 	"context"
 	"fmt"
-	"github.com/greenpau/caddy-authorize/pkg/user"
-	"github.com/greenpau/caddy-auth-portal/pkg/backends"
-	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
-	// "github.com/greenpau/caddy-auth-portal/pkg/utils"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/backends"
+	"github.com/betrybe/caddy-auth-portal/pkg/enums/operator"
+	"github.com/betrybe/caddy-authorize/pkg/user"
+
+	// "github.com/betrybe/caddy-auth-portal/pkg/utils"
 	"github.com/greenpau/go-identity/pkg/requests"
 	// "go.uber.org/zap"
 	"net/http"

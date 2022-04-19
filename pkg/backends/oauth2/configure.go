@@ -24,7 +24,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
 	"go.uber.org/zap"
 )
 

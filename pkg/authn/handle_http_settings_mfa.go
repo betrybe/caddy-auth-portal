@@ -19,17 +19,18 @@ import (
 	// "encoding/json"
 	"encoding/base64"
 	"fmt"
-	"github.com/greenpau/caddy-auth-portal/pkg/backends"
-	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
-	"github.com/greenpau/caddy-auth-portal/pkg/utils"
-	"github.com/greenpau/caddy-authorize/pkg/user"
+	"net/http"
+	"strings"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/backends"
+	"github.com/betrybe/caddy-auth-portal/pkg/enums/operator"
+	"github.com/betrybe/caddy-auth-portal/pkg/utils"
+	"github.com/betrybe/caddy-authorize/pkg/user"
 	"github.com/greenpau/go-identity"
 	"github.com/greenpau/go-identity/pkg/qr"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"github.com/skip2/go-qrcode"
 	"go.uber.org/zap"
-	"net/http"
-	"strings"
 )
 
 func (p *Authenticator) handleHTTPMfaBarcode(ctx context.Context, w http.ResponseWriter, r *http.Request, endpoint string) error {

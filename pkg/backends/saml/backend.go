@@ -15,12 +15,13 @@
 package saml
 
 import (
+	"net/url"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/enums/operator"
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
 	samllib "github.com/crewjam/saml"
-	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
 	"github.com/greenpau/go-identity/pkg/requests"
 	"go.uber.org/zap"
-	"net/url"
 )
 
 // Backend represents authentication provider with SAML backend.

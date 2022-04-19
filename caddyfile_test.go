@@ -25,10 +25,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/betrybe/caddy-auth-portal/pkg/cache"
+	"github.com/betrybe/caddy-auth-portal/pkg/errors"
+	_ "github.com/betrybe/caddy-authorize"
 	"github.com/caddyserver/caddy/v2/caddytest"
-	"github.com/greenpau/caddy-auth-portal/pkg/cache"
-	"github.com/greenpau/caddy-auth-portal/pkg/errors"
-	_ "github.com/greenpau/caddy-authorize"
 	_ "github.com/greenpau/caddy-trace"
 	"github.com/stretchr/testify/assert"
 )

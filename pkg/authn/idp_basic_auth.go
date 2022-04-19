@@ -17,14 +17,15 @@ package authn
 import (
 	"context"
 	"encoding/base64"
-	"github.com/greenpau/caddy-auth-portal/pkg/enums/operator"
-	"github.com/greenpau/caddy-authorize/pkg/errors"
-	"github.com/greenpau/caddy-authorize/pkg/shared/idp"
-	"github.com/greenpau/caddy-authorize/pkg/user"
-	"github.com/greenpau/go-identity/pkg/requests"
-	"go.uber.org/zap"
 	"strings"
 	"time"
+
+	"github.com/betrybe/caddy-auth-portal/pkg/enums/operator"
+	"github.com/betrybe/caddy-authorize/pkg/errors"
+	"github.com/betrybe/caddy-authorize/pkg/shared/idp"
+	"github.com/betrybe/caddy-authorize/pkg/user"
+	"github.com/greenpau/go-identity/pkg/requests"
+	"go.uber.org/zap"
 )
 
 // BasicAuth performs API key authentication.
