@@ -17,6 +17,7 @@ package cache
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 
 	"github.com/betrybe/caddy-auth-portal/pkg/errors"
 	"github.com/go-redis/redis/v8"
@@ -44,6 +45,7 @@ func (sm *Redis) Add(key string, value interface{}) error {
 	if err != nil {
 		return errors.ErrCache.WithArgs("add", err)
 	}
+	fmt.Printf("[ADD] -> key: %s - value: %s\n", key, encodedValue)
 	err = sm.client.Set(sm.ctx, key, encodedValue, 0).Err()
 	if err != nil {
 		return errors.ErrCache.WithArgs("add", err)
@@ -57,6 +59,7 @@ func (sm *Redis) Get(key string, output interface{}) error {
 	if err != nil {
 		return errors.ErrCache.WithArgs("get", err)
 	}
+	fmt.Printf("[GET] -> key: %s - value: %s\n", key, js)
 	err = json.Unmarshal([]byte(js), output)
 	if err != nil {
 		return errors.ErrCache.WithArgs("get", err)
@@ -79,6 +82,7 @@ func (sm *Redis) Exists(key string) (bool, error) {
 	if err != nil {
 		return false, errors.ErrCache.WithArgs("exists", err)
 	}
+	fmt.Printf("[EXISTS] -> key: %s - value: %d\n", key, result)
 	return result > 0, nil
 }
 
